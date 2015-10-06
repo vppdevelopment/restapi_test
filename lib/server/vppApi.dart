@@ -37,4 +37,13 @@ class VppApi
       registeredUsers.add(user);
       return user;
     }
+
+    @ApiMethod(method: 'DELETE', path: 'user/{userName}')
+    User deleteUser(String userName)
+    {
+      String userNameDecoded = Uri.decodeComponent(userName);
+      User foundedUser = registeredUsers.firstWhere( (u) => u.userName == userNameDecoded, orElse: ()=> new User() );
+      registeredUsers.remove(foundedUser);
+      return foundedUser;
+    }
 }
