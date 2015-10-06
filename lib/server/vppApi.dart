@@ -30,4 +30,11 @@ class VppApi
     {
         return registeredUsers;
     }
+
+    @ApiMethod(method: 'POST', path: 'user')
+    User addUser(User user)
+    {
+      registeredUsers.add(user);
+      return user;
+    }
 }
